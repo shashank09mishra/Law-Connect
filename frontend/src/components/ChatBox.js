@@ -28,6 +28,14 @@ function ChatBox() {
       message: newMessage,
     };
     socket.emit('chat message', msg);
+    // Save message to backen
+    await fetch(${process.env.REACT_APP_API_URL}/api/message, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ message }),
+    });
     setNewMessage('');
   };
 
